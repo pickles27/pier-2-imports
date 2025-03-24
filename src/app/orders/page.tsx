@@ -4,7 +4,7 @@ import { TrackOrderForm } from "../components/TrackOrderForm/TrackOrderForm";
 export default async function Orders({
   searchParams: searchParamsPromise,
 }: {
-  searchParams: Record<string, string>;
+  searchParams: Promise<Record<string, string>>;
 }) {
   const searchParams = await searchParamsPromise;
   const query = new URLSearchParams(searchParams).toString();
