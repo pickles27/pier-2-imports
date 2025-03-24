@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "TZ=UTC jest",
+    "test:watch": "TZ=UTC jest --watch"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
