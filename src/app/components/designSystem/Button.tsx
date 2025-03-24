@@ -4,6 +4,8 @@ export type ButtonProps = React.ComponentProps<"button"> & {
   variant?: "primary" | "secondary";
 };
 
+// TODO: Add hover color change (need to add colors to globals.css)
+
 export const Button = ({
   children,
   variant = "primary",

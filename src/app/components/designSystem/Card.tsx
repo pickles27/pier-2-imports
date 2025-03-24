@@ -1,8 +1,15 @@
-export type CardProps = React.ComponentProps<"div">;
+import clsx from "clsx";
 
-export const Card = ({ children, ...props }: CardProps) => (
+export type CardProps = React.ComponentProps<"div"> & {
+  padding?: number;
+};
+
+export const Card = ({ children, padding = 8, ...props }: CardProps) => (
   <div
-    className="w-full text-wrap bg-background rounded-md drop-shadow-sm p-8"
+    className={clsx(
+      "w-full overflow-hidden bg-background rounded-md drop-shadow-sm",
+      `p-${padding}`
+    )}
     {...props}
   >
     {children}

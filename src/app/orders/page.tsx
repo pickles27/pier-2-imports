@@ -14,7 +14,7 @@ export default async function Orders({
   // check response.ok and handle error if needed
 
   return (
-    <div className="min-h-screen overflow-y bg-gray-100 dark:bg-gray-900 font-[family-name:var(--font-geist-sans)] py-24 px-4 sm:px-20">
+    <div className="min-h-screen overflow-y bg-background-secondary font-[family-name:var(--font-geist-sans)] py-24 px-4 sm:px-20">
       <main className="w-full flex flex-col items-center sm:items-start gap-8">
         <TrackOrderForm />
         <OrderHistory query={query} />

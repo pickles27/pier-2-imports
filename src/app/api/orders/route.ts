@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
 
 const sql = neon(process.env.DATABASE_URL!);
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    const searchParams = request.nextUrl.searchParams;
     const email = searchParams.get("email");
     const phone = searchParams.get("phone");
 
@@ -15,15 +15,7 @@ export async function GET(request: Request) {
       WHERE email = ${email} OR phone = ${phone};
     `;
 
-    const orders = results.map((result) => ({
-      orderId: result.order_id,
-      purchaseDate: result.purchase_date,
-      totalAmount: result.total_amount,
-      status: result.status,
-      estimatedDeliveryDate: result.estimated_delivery_date,
-    }));
-
-    return NextResponse.json(orders);
+    return NextResponse.json(results);
   } catch (error) {
     return NextResponse.json(
       { message: "Internal Server Error", error: (error as Error).message },

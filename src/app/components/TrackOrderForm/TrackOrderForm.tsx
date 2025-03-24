@@ -72,6 +72,8 @@ export const TrackOrderForm = () => {
     }
   };
 
+  // TODO: use Card here
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -91,12 +93,12 @@ export const TrackOrderForm = () => {
             </span>
           )}
         </div>
-        <div className="flex flex-col sm:flex-row items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-center gap-2 lg:gap-4">
           <TextField
             label="Email Address"
             type="email"
             name="email"
-            placeholder="Enter your email"
+            placeholder="Enter your email (user1@example.com)"
             title="Make sure the email address you enter is valid, or try searching by phone number."
             onChange={(e) => setEmail(e.target.value)}
             value={email}
