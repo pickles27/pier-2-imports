@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
+import { Footer, Header } from "./components/designSystem";
+import { FaBox } from "react-icons/fa6";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,9 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Header />
+        <Header Icon={FaBox} label="OrderTrack" url="/" />
         {children}
-        <Footer />
+        <Footer label="© 2025 OrderTrack. All rights reserved." />
       </body>
     </html>
   );

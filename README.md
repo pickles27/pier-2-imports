@@ -2,7 +2,7 @@
 
 Welcome to Pier 2 Imports OrderTrack, a customer-facing order tracking dashboard that allows customers to view their order history, track order statuses, and see estimated delivery dates.
 
-[Try out OrderTrack.](https://pier-2-imports.vercel.app/)
+[Try out OrderTrack.](https://pier-2-imports.vercel.app/) Searching for email `user1@example.com` will yield results.
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
