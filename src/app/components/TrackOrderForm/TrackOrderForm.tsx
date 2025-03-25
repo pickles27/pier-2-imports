@@ -2,7 +2,7 @@
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button, TextField } from "../designSystem";
+import { Button, Card, TextField } from "../designSystem";
 
 export const TrackOrderForm = () => {
   const searchParams = useSearchParams();
@@ -72,61 +72,58 @@ export const TrackOrderForm = () => {
     }
   };
 
-  // TODO: use Card here
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full bg-background rounded-md drop-shadow-sm p-8"
-    >
-      <fieldset className="flex flex-col gap-6 bg-background">
-        <div>
-          <legend>
-            <h2 className="text-lg font-bold">Track Your Order</h2>
-          </legend>
-          {errorMessage && (
-            <span
-              className="text-md text-red-700 dark:text-red-300"
-              role="alert"
+    <Card>
+      <form onSubmit={handleSubmit}>
+        <fieldset className="flex flex-col gap-6 bg-background">
+          <div>
+            <legend>
+              <h2 className="text-lg font-bold">Track Your Order</h2>
+            </legend>
+            {errorMessage && (
+              <span
+                className="text-md text-red-700 dark:text-red-300"
+                role="alert"
+              >
+                {errorMessage}
+              </span>
+            )}
+          </div>
+          <div className="flex flex-col sm:flex-row items-center gap-2 lg:gap-4">
+            <TextField
+              label="Email Address"
+              type="email"
+              name="email"
+              placeholder="Enter your email (user1@example.com)"
+              title="Make sure the email address you enter is valid, or try searching by phone number."
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <span className="mt-auto font-bold">OR</span>
+            <TextField
+              label="Phone Number"
+              type="tel"
+              name="phone"
+              placeholder="Enter your phone number"
+              title="Enter a valid phone number (7-15 digits). Spaces, dashes, parentheses, and an optional '+' are allowed."
+              onChange={(e) => setPhone(e.target.value)}
+              value={phone}
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button type="submit" disabled={isLoading}>
+              Search Orders
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={handleClearFilters}
             >
-              {errorMessage}
-            </span>
-          )}
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-2 lg:gap-4">
-          <TextField
-            label="Email Address"
-            type="email"
-            name="email"
-            placeholder="Enter your email (user1@example.com)"
-            title="Make sure the email address you enter is valid, or try searching by phone number."
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-          <span className="mt-auto font-bold">OR</span>
-          <TextField
-            label="Phone Number"
-            type="tel"
-            name="phone"
-            placeholder="Enter your phone number"
-            title="Enter a valid phone number (7-15 digits). Spaces, dashes, parentheses, and an optional '+' are allowed."
-            onChange={(e) => setPhone(e.target.value)}
-            value={phone}
-          />
-        </div>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Button type="submit" disabled={isLoading}>
-            Search Orders
-          </Button>
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={handleClearFilters}
-          >
-            Clear Filters
-          </Button>
-        </div>
-      </fieldset>
-    </form>
+              Clear Filters
+            </Button>
+          </div>
+        </fieldset>
+      </form>
+    </Card>
   );
 };

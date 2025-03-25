@@ -16,8 +16,8 @@ export default async function Orders({
   return (
     <div className="min-h-screen overflow-y bg-background-secondary font-[family-name:var(--font-geist-sans)] py-24 px-4 sm:px-20">
       <main className="w-full flex flex-col items-center sm:items-start gap-8">
-        <TrackOrderForm />
-        <OrderHistory query={query} />
+        {<TrackOrderForm />}
+        {query && <OrderHistory query={query} />}
       </main>
     </div>
   );
