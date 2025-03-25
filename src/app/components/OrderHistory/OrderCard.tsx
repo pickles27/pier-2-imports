@@ -24,12 +24,14 @@ export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
   };
 
   // todo: add live region for the details
-  // add carot that flips when order details displayed
-  // add status chip
 
   return (
     <Card padding={0}>
-      <OrderCardHeader onClick={handleOrderHeaderClick} {...orderPreview} />
+      <OrderCardHeader
+        isCardExpanded={!!orderDetails}
+        onClick={handleOrderHeaderClick}
+        {...orderPreview}
+      />
       {orderDetails && <OrderDetails {...orderDetails} />}
     </Card>
   );
