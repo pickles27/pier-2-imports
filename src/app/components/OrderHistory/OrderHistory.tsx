@@ -3,23 +3,11 @@ import { OrderCard } from "./OrderCard";
 import { Card } from "../designSystem";
 
 export type OrdersHistoryProps = {
-  query: string;
+  ordersPromise: Promise<OrderPreview[]>;
 };
 
-export const OrderHistory = async ({ query }: OrdersHistoryProps) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/orders/?${query}`
-  );
-  const orders: OrderPreview[] = await response.json();
-
-  if (!response.ok) {
-    // TODO: replace with non-ugly error component
-    return (
-      <Card>
-        <p role="alert">oh noes</p>
-      </Card>
-    );
-  }
+export const OrderHistory = async ({ ordersPromise }: OrdersHistoryProps) => {
+  const orders = await ordersPromise;
 
   return (
     <div className="w-full flex flex-col gap-4">

@@ -16,7 +16,7 @@ export type Product = {
 export type Address = {
   name: string;
   address1: string;
-  address2?: string;
+  address2?: string | null;
   city: string;
   state: string;
   zip: string;
@@ -33,7 +33,7 @@ export type OrderPreview = {
 export type Order = OrderPreview & {
   email: string;
   phone: string;
-  trackingNumber: string;
+  trackingNumber?: string | null;
   billingAddress: Address;
   shippingAddress: Address;
   products: Product[];

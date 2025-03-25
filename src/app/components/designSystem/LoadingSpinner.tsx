@@ -1,8 +1,5 @@
 export const LoadingSpinner = () => (
-  <div
-    className="w-full min-h-screen flex justify-center items-center"
-    role="status"
-  >
+  <div className="w-full flex justify-center items-center" role="status">
     <svg
       aria-hidden="true"
       className="w-12 h-12 text-gray-200 animate-spin dark:fill-background fill-foreground"

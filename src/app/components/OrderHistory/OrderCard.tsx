@@ -11,22 +11,31 @@ export type OrderCardProps = OrderPreview;
 export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
   const [orderDetails, setOrderDetails] = useState<Order>();
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOrderHeaderClick = async () => {
-    setErrorMessage("");
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/order/${orderPreview.orderId}`
-    );
-    const order = await response.json();
+    try {
+      setErrorMessage("");
+      setIsLoading(true);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/order/${orderPreview.orderId}`
+      );
+      const order = await response.json();
 
-    if (!response.ok) {
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      if (order) {
+        setOrderDetails(order);
+      }
+    } catch (error) {
+      console.error(error);
       setErrorMessage(
         "Something went wrong when fetching your order. Refresh and try again."
       );
-    }
-
-    if (order) {
-      setOrderDetails(order);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -37,8 +46,13 @@ export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
         onClick={handleOrderHeaderClick}
         {...orderPreview}
       />
-      {orderDetails && (
-        <OrderDetails errorMessage={errorMessage} {...orderDetails} />
+      {(isLoading || orderDetails) && (
+        <OrderDetails
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+          order={orderDetails}
+          orderId={orderPreview.orderId}
+        />
       )}
     </Card>
   );
