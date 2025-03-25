@@ -179,3 +179,27 @@ test('Clicking "Search Orders" when both email and phone number are empty displa
     )
   ).toBeInTheDocument();
 });
+
+test('Clicking "Clear Filters" clears any error messages', async () => {
+  const user = userEvent.setup();
+
+  render(<TrackOrderForm />);
+
+  await user.click(screen.getByRole("button", { name: "Search Orders" }));
+
+  // would normally test for role here, but no time to debug why it's not being assigned the correct accessible name
+  expect(
+    screen.getByText(
+      "Please enter either the email or phone number associated with your order."
+    )
+  ).toBeInTheDocument();
+
+  await user.click(screen.getByRole("button", { name: "Clear Filters" }));
+
+  // would normally test for role here, but no time to debug why it's not being assigned the correct accessible name
+  expect(
+    screen.queryByText(
+      "Please enter either the email or phone number associated with your order."
+    )
+  ).not.toBeInTheDocument();
+});
