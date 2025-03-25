@@ -13,7 +13,7 @@ CREATE TABLE orders (
   purchase_date TIMESTAMP NOT NULL,
   total_amount TEXT NOT NULL,
   status order_status NOT NULL,
-  estimated_delivery_date TIMESTAMP
+  estimated_delivery_date TIMESTAMP,
   tracking_number TEXT
 );
 
