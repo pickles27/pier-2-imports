@@ -110,8 +110,12 @@ I utilized ChatGPT while building this app to brainstorm ideas and help me with 
 
 ## Future Improvements
 
+- Support filtering or sorting orders
+- Add order tracking progress bar
+- Vastly improve test coverage
 - Generate types based on db schema instead of maintaining the types in [app/lib/definitions.ts](./src/app/lib/definitions.ts) (and risking divergence) - Prisma perhaps?
 - Use fancier Accordion component for expanding order details - the approach I’m using does not support closing the accordions
+- Add masking to phone number input
 - Order List pagination (would only really be necessary if users tended to have a large number of orders)
 - Better error handling - errors presented to the user are currently very generic and are not utilizing any sort of error codes.
 - Improved accessibility - maybe utilize a headless component library like Radix.
