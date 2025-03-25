@@ -51,6 +51,7 @@ export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
           isLoading={isLoading}
           errorMessage={errorMessage}
           order={orderDetails}
+          // Pass order id separately to enable the order details heading to display during loading.
           orderId={orderPreview.orderId}
         />
       )}
