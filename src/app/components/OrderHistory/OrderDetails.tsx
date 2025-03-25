@@ -3,9 +3,12 @@ import { ProductsDetailCard } from "./OrderDetailCards/ProductsDetailCard";
 import { AddressCard } from "./OrderDetailCards/AddressCard";
 import { TrackingInformationCard } from "./OrderDetailCards/TrackingInformationCard";
 
-export type OrderDetailsProps = Order;
+export type OrderDetailsProps = Order & {
+  errorMessage?: string;
+};
 
 export const OrderDetails = ({
+  errorMessage,
   estimatedDeliveryDate,
   orderId,
   products,
@@ -16,6 +19,7 @@ export const OrderDetails = ({
   return (
     <section className="bg-background-secondary p-8 pt-4">
       <h3 className="text-md font-bold">Order Details #{orderId}</h3>
+      {errorMessage && <p role="alert">{errorMessage}</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
         {!!products && <ProductsDetailCard products={products} />}
         {!!trackingNumber && (

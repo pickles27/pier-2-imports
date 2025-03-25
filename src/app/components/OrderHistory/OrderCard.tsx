@@ -10,19 +10,25 @@ export type OrderCardProps = OrderPreview;
 
 export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
   const [orderDetails, setOrderDetails] = useState<Order>();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleOrderHeaderClick = async () => {
+    setErrorMessage("");
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/order/${orderPreview.orderId}`
     );
     const order = await response.json();
 
+    if (!response.ok) {
+      setErrorMessage(
+        "Something went wrong when fetching your order. Refresh and try again."
+      );
+    }
+
     if (order) {
       setOrderDetails(order);
     }
   };
-
-  // todo: add live region for the details
 
   return (
     <Card padding={0}>
@@ -31,7 +37,9 @@ export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
         onClick={handleOrderHeaderClick}
         {...orderPreview}
       />
-      {orderDetails && <OrderDetails {...orderDetails} />}
+      {orderDetails && (
+        <OrderDetails errorMessage={errorMessage} {...orderDetails} />
+      )}
     </Card>
   );
 };
