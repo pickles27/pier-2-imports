@@ -32,7 +32,7 @@ export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
     } catch (error) {
       console.error(error);
       setErrorMessage(
-        "Something went wrong when fetching your order. Refresh and try again."
+        "Something went wrong while fetching your order. Refresh and try again."
       );
     } finally {
       setIsLoading(false);
@@ -46,7 +46,7 @@ export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
         onClick={handleOrderHeaderClick}
         {...orderPreview}
       />
-      {(isLoading || orderDetails) && (
+      {(isLoading || orderDetails || errorMessage) && (
         <OrderDetails
           isLoading={isLoading}
           errorMessage={errorMessage}
