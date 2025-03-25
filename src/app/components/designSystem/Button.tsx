@@ -4,8 +4,6 @@ export type ButtonProps = React.ComponentProps<"button"> & {
   variant?: "primary" | "secondary";
 };
 
-// TODO: Add hover color change (need to add colors to globals.css)
-
 export const Button = ({
   children,
   variant = "primary",
@@ -14,10 +12,10 @@ export const Button = ({
   return (
     <button
       className={clsx(
-        "w-full sm:w-fit text-md font-bold py-1 px-3 drop-shadow-md rounded-sm cursor-pointer",
+        "w-full sm:w-fit text-md font-bold py-1 px-3 drop-shadow-md rounded-sm cursor-pointer focus:outline-yellow-500",
         variant === "primary"
-          ? "bg-foreground text-background outline-2 outline-black dark:outline-white focus:outline-yellow-500"
-          : "bg-background text-foreground outline-2 outline-dark dark:outline-white focus:outline-yellow-500"
+          ? "bg-foreground text-background outline-2 outline-black hover:bg-gray-800"
+          : "bg-background text-foreground outline-2 outline-dark hover:bg-gray-200"
       )}
       {...props}
     >
