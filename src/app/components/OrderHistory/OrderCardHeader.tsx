@@ -10,28 +10,34 @@ export type OrderCardHeaderProps = OrderPreview & {
 export const OrderCardHeader = ({
   isCardExpanded,
   onClick,
-  ...order
+  orderId,
+  purchaseDate,
+  totalAmount,
+  estimatedDeliveryDate,
+  orderStatus,
 }: OrderCardHeaderProps) => {
-  const formattedPurchaseDate = formatDate(order.purchase_date);
-  const formattedDeliveryDate = formatDate(order.estimated_delivery_date);
   return (
     <button className="w-full cursor-pointer p-8" onClick={onClick}>
       <div className="flex flex-col gap-2 text-left">
         <div className="flex justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-md">#{order.order_id}</span>
+            <span className="font-bold text-md">#{orderId}</span>
             <span className="text-foreground-secondary/90 text-sm font-semibold">
-              {formattedPurchaseDate}
+              {formatDate(purchaseDate)}
             </span>
           </div>
           <span className="bg-background-secondary py-1 px-3 rounded-full text-xs font-bold">
-            {order.status}
+            {orderStatus}
           </span>
         </div>
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-1 font-semibold text-foreground-secondary text-sm">
-            <span>Total Amount: {order.total_amount}</span>
-            <span>Estimated Delivery: {formattedDeliveryDate}</span>
+            <span>Total Amount: {totalAmount}</span>
+            {estimatedDeliveryDate && (
+              <span>
+                Estimated Delivery: {formatDate(estimatedDeliveryDate)}
+              </span>
+            )}
           </div>
           {isCardExpanded ? <PiCaretUpBold /> : <PiCaretDownBold />}
         </div>

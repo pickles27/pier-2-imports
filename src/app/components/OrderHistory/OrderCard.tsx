@@ -13,13 +13,12 @@ export const OrderCard = ({ ...orderPreview }: OrderCardProps) => {
 
   const handleOrderHeaderClick = async () => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/order/${orderPreview.order_id}`
+      `${process.env.NEXT_PUBLIC_API_URL}/api/order/${orderPreview.orderId}`
     );
-    const orders = await response.json();
+    const order = await response.json();
 
-    // Order Id is unique identifier so there should only be one at most
-    if (orders[0]) {
-      setOrderDetails(orders[0]);
+    if (order) {
+      setOrderDetails(order);
     }
   };
 

@@ -27,7 +27,7 @@ export const OrderHistory = async ({ query }: OrdersHistoryProps) => {
       {orders.length > 0 ? (
         <div className="flex flex-col gap-4">
           {orders.map((order) => (
-            <div key={order.order_id}>
+            <div key={order.orderId}>
               <OrderCard {...order} />
             </div>
           ))}

@@ -5,7 +5,7 @@ export type CardProps = React.ComponentProps<"div"> & {
 };
 
 export const Card = ({ children, padding = 8, ...props }: CardProps) => (
-  <div
+  <section
     className={clsx(
       "w-full overflow-hidden bg-background rounded-md drop-shadow-sm",
       `p-${padding}`
@@ -13,5 +13,5 @@ export const Card = ({ children, padding = 8, ...props }: CardProps) => (
     {...props}
   >
     {children}
-  </div>
+  </section>
 );

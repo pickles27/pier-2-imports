@@ -1,19 +1,37 @@
 import { Order } from "app/lib/definitions";
+import { ProductsDetailCard } from "./OrderDetailCards/ProductsDetailCard";
+import { AddressCard } from "./OrderDetailCards/AddressCard";
+import { TrackingInformationCard } from "./OrderDetailCards/TrackingInformationCard";
 
 export type OrderDetailsProps = Order;
 
-// if products.length > 1, render Products card
-// if tracking number exists, render tracking into
-// if shipping info exists render shipping card
-// if billing info exists render billing card
-
-// render cards in grid and ensure they stack properly on mobile
-
-export const OrderDetails = ({ order_id, ...rest }: OrderDetailsProps) => {
+export const OrderDetails = ({
+  estimatedDeliveryDate,
+  orderId,
+  products,
+  billingAddress,
+  shippingAddress,
+  trackingNumber,
+}: OrderDetailsProps) => {
+  console.log("tracking number: ", trackingNumber);
   return (
-    <section className="bg-background-secondary p-8">
-      <h4>Order Details #{order_id}</h4>
-      <p>{JSON.stringify(rest)}</p>
+    <section className="bg-background-secondary p-8 pt-4">
+      <h3 className="text-md font-bold">Order Details #{orderId}</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
+        {!!products && <ProductsDetailCard products={products} />}
+        {!!trackingNumber && (
+          <TrackingInformationCard
+            trackingNumber={trackingNumber}
+            estimatedDeliveryDate={estimatedDeliveryDate}
+          />
+        )}
+        {!!billingAddress && (
+          <AddressCard title="Billing Address" {...billingAddress} />
+        )}
+        {!!shippingAddress && (
+          <AddressCard title="Shipping Address" {...shippingAddress} />
+        )}
+      </div>
     </section>
   );
 };
