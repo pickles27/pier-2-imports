@@ -113,7 +113,7 @@ I utilized ChatGPT while building this app to brainstorm ideas and help me with 
 - Support filtering or sorting orders
 - Add order tracking progress bar
 - Vastly improve test coverage
-- Fix how currency is being stored (currently just stored as strings and only supports US dollars) - would probably change to decimal and store the currency type in separate column
+- Fix how currency is being stored (currently order amount and product prices are just stored as strings and only supports US dollars) - would probably change to decimal and store the currency type in separate column
 - Generate types based on db schema instead of maintaining the types in [app/lib/definitions.ts](./src/app/lib/definitions.ts) (and risking divergence) - Prisma perhaps?
 - Use fancier Accordion component for expanding order details - the approach I’m using does not support closing the accordions
 - Add masking to phone number input
