@@ -8,7 +8,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, install the dependencies and run the development server:
+Save the environment variables [in this gist](https://gist.github.com/pickles27/07f564a7c39445eeea5a3df5a488c242) into a `.env.local` file in the app root. This is just a dev database with some mock data - would not do this in prod 😅
+
+Then, install the dependencies and run the development server:
 
 ```bash
 pnpm install
