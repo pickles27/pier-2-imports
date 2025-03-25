@@ -26,7 +26,7 @@ export const ProductsDetailCard = ({ products }: ProductsDetailCardProps) => {
               <figcaption className="flex flex-col">
                 <span className="font-bold text-foreground">{productName}</span>
                 <span>
-                  Qty: {quantity} x ${price}
+                  Qty: {quantity} x {price}
                 </span>
               </figcaption>
             </figure>
