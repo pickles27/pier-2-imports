@@ -13,7 +13,6 @@ export const OrderDetails = ({
   shippingAddress,
   trackingNumber,
 }: OrderDetailsProps) => {
-  console.log("tracking number: ", trackingNumber);
   return (
     <section className="bg-background-secondary p-8 pt-4">
       <h3 className="text-md font-bold">Order Details #{orderId}</h3>
